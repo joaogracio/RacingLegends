@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Discoteca XML #1</title>
+    <meta charset="utf-8" />
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/3-col-portfolio.css" />
+    <!-- Os meus Scripts -->
+    <script src="discotPars.js"></script>
+    <script src="discotProc1.js"></script>
+    <script>inicXML("discotB.xml");</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/discot1.html" >Discoteca 1</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/discot1.html">
+                            Discoteca1
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Page Content -->
+    <div class="container">
+        <!-- Page Heading -->
+        <h1 class="my-4">
+            Page Heading
+            <small>Secondary Text</small>
+        </h1>
+        <div class="row">
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+                <div class="card h-100">
+                    <a href="#" name="shrt0"><img class="card-img-top" src="http://placehold.it/700x400" alt="" id="img0"></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a id="shrt0" href="#"></a>
+                        </h4>
+                        <input type="text" onkeyup="myFunction(0)"/>
+                        <ul class="list-group">
+
+                        </ul>
+                        <p class="card-text" id="p0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+                <div class="card h-100">
+                    <a href="#" name="shrt1" ><img class="card-img-top" src="http://placehold.it/700x400" alt="" id="img1"></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#" id="shrt1">Project Two</a>
+                        </h4>
+                        <input type="text" onkeyup="myFunction(1)"/>
+                        <ul class="list-group"></ul>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+                <div class="card h-100">
+                    <a href="#" name="shrt2" ><img class="card-img-top" src="http://placehold.it/700x400" alt="" id="img2"></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#" name="shrt2">Project Three</a>
+                        </h4>
+                        <input type="text" onkeyup="myFunction(2)"/>
+                        <ul class="list-group" ></ul>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+                <div class="card h-100">
+                    <a href="#" name="shrt3" ><img class="card-img-top" src="http://placehold.it/700x400" alt="" id="img3"></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#" name="shrt3">Project Four</a>
+                        </h4>
+                        <input type="text" onkeyup="myFunction(3)"/>
+                        <ul class="list-group"></ul>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+                <div class="card h-100">
+                    <a href="#" name="shrt4" ><img class="card-img-top" src="http://placehold.it/700x400" alt="" id="img4"></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#" name="shrt4">Project Five</a>
+                        </h4>
+                        <input type="text" onkeyup="myFunction(4)"/>
+                        <ul class="list-group"></ul>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+                <div class="card h-100">
+                    <a href="#" name="shrt5" ><img class="card-img-top" src="http://placehold.it/700x400" alt="" id="img5"></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#" name="shrt5">Project Six</a>
+                        </h4>
+                        <input type="text" onkeyup="myFunction(5)"/>
+                        <ul class="list-group"></ul>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+        <!-- Pagination -->
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">2</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">3</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- /.container -->
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+    <!-- Bootstrap core JavaScript -->
+
+
+    <script>inicXML("discotB.xml");</script>
+</body>
+</html>
