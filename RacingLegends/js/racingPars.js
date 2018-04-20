@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function main(e) {
     fetch(url)
         .then((resp) => resp.json())
         .then(function (data) {
-            categories(root, data);
+            categories(data);
         })
         .catch(function (error) {
             console.log(error);

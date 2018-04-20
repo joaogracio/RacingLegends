@@ -15,11 +15,165 @@ function strImageCat(id) {
 }
 
 function strImageDri(driverId) {
-    var str = 'http://ipt-ti2-racinglegends-api.eu-gb.mybluemix.net/api/v1/drivers/' + driverId + '/image'; 
+    var str = 'http://ipt-ti2-racinglegends-api.eu-gb.mybluemix.net/api/v1/drivers/' + driverId + '/image';
     return str;
 }
 
-function categories(root, data) {
+function driversList(data) {
+    var drivers = document.querySelector("#drivers");
+
+    drivers.innerHTML = "";
+    var divcont = document.createElement("div");
+    divcont.className = "container";
+    append(drivers, divcont);
+
+    var divrow = document.createElement("div");
+    divrow.className = "row";
+    var divcol = document.createElement("div");
+    divcol.className = "col-lg-12";
+    var h2 = document.createElement("h2");
+    h2.className = "my-4";
+    h2.innerText = "A nossa equipa de Pilotos ";
+    append(divcol, h2);
+    append(divrow, divcol);
+    append(divcont, divrow);
+
+    data.forEach(function (drivers) {
+        // Declaração de todos os elementos dentro desta função da pagina
+        var divcollg4 = document.createElement("div"),
+            a = document.createElement("a"),
+            img = document.createElement("img"),
+            h3 = document.createElement("h3"),
+            small = document.createElement("small"),
+            p = document.createElement("p");
+
+        
+        // Detalhar classes e Atributos de cada butao
+        divcollg4.className = "col-lg-4 col-sm-6 text-center mb-4";
+
+        // Ao clicar na foto de um codutor deve fazer...
+        a.addEventListener("click", function () {
+            onClickOneDri(drivers.id);
+        });
+
+        // Continuação do Detalhar
+        img.className = "rounded-circle img-fluid d-block mx-auto";
+        img.src = strImageDri(drivers.id);
+        img.width = 200;
+        img.height = 200;
+        h3.innerText = drivers.name + " ";
+        small.innerText = drivers.nickname;
+        p.innerText = drivers.nationality;
+
+        // Agregar todos os botoes onde sao devidos segundo o bootstrap
+        append(a, img);
+        append(divcollg4, a)
+        append(h3, small);
+        append(divcollg4, h3);
+        append(divcollg4, p);
+        append(divrow, divcollg4);
+    });
+
+    buttoncats = document.createElement("button");
+
+    buttoncats.innerText = "Categorias";
+    buttoncats.addEventListener("click", function () {
+        onClickGoToCat();
+    });
+    buttoncats.className = "btn btn-primary";
+
+    append(drivers, buttoncats);
+}
+
+function oneDriver(data) {
+    var onedriver = document.querySelector("#onedriver");
+    onedriver.innerHTML = "";
+    var divcont = document.createElement("div"),
+        divrow = document.createElement("div"),
+        divcollg8 = document.createElement("div"),
+        h1 = document.createElement("h1"),
+        pbirthdate = document.createElement("p"),
+        ptext = document.createElement("p"),
+        hr = document.createElement("hr"),
+        img = document.createElement("img"),
+        pintroduction = document.createElement("p"),
+        buttondrivers = document.createElement("button");
+
+    divcont.className = "container";
+    divrow.className = "row";
+    divcollg8.className = "col-lg-8";
+    h1.className = "mt-4";
+    buttondrivers.innerText = sessionStorage.cat;
+    buttondrivers.addEventListener("click", function () {
+        onClickCat(sessionStorage.cat);
+    });
+    buttondrivers.className = "btn btn-primary";
+
+    // Necessária uma captura mais eficaz de javascript
+    // PAra aquilo que recebemos em JSON
+    h1.innerText = data.career[0].title;
+    pbirthdate.innerText = data.birth_date;
+    ptext.innerText = data.career[0].text;
+    img.src = strImageDri(data.id);
+    img.widht = 900;
+    img.height = 300;
+    pintroduction.innerText = data.introduction;
+
+    append(onedriver, divcont);
+    append(divcont, divrow);
+    append(divrow, divcollg8);
+    append(divcollg8, h1);
+    append(divcollg8, img);
+    append(divcollg8, pbirthdate);
+    append(divcollg8, ptext);
+    append(divcollg8, hr);
+    append(divcollg8, pintroduction);
+    // Colocar Aqui a Multimedia
+
+    // Cria o bootstrap para receber a metada dos videos...
+    data.multimedia.videos.forEach(function (video) {
+        
+        var div2col = document.createElement("div"),
+            divcollg6 = document.createElement("div"),
+            divcard = document.createElement("div"),
+            videocam = document.createElement("iframe"),
+            divcardbody = document.createElement("div"),
+            h4 = document.createElement("h4"),
+            a = document.createElement("a");
+
+        div2col.className = "row";
+        divcollg6.className = "col-lg-6 portfolio-item";
+        divcard.className = "card h-100";
+        divcardbody.className = "card-body";
+        video.title = video.caption;
+        videocam.width = 480;
+        videocam.height = 390;
+        videocam.src = "https://www.youtube.com/embebed/" + video.youtube_id;
+        videocam.allowFullscreen = true;
+        h4.innerText = video.caption;
+        a.href = "https://www.youtube.com/watch?v=" + video.youtube_id;
+        h4.className = "card-title";
+
+        //console.log(video);
+
+        
+        append(div2col, divcollg6);
+        append(divcollg6, divcard);
+        append(divcard, videocam);
+        append(divcard, divcardbody);
+        append(divcardbody, a);
+        append(a, h4);
+        // No final colocar esta dive no respectivo container...
+        append(divcont, div2col);
+    });
+    // Colocar Aqui Informações Adicionais
+    append(divcollg8, buttondrivers);
+}
+
+function categories(data) {
+    var root = document.querySelector("#root");
+
+    root.innerHTML = "";
     //Cria a div contentora dos items
     var divcontainer = createNode("div");
     divcontainer.className = "container";
@@ -56,6 +210,8 @@ function categories(root, data) {
         divcol.className = "col-md-7";
         img.className = "img-fluid rounded mb-3 mb-md-0"
         img.src = strImageCat(categorie.id);
+        img.width = 700;
+        img.height = 300;
         divcoldesc.className = "col-md-5";
         h3.innerHTML = `${categorie.name}`;
         p.innerHTML = `${categorie.description}`;
@@ -77,93 +233,36 @@ function categories(root, data) {
 
 }
 
-function driversList(drivers, data) {
-    var divcont = document.createElement("div");
-    divcont.className = "container";
-    append(drivers, divcont);
-
-    var divrow = document.createElement("div");
-    divrow.className = "row";
-    var divcol = document.createElement("div");
-    divcol.className = "col-lg-12";
-    var h2 = document.createElement("h2");
-    h2.className = "my-4";
-    h2.innerText = "A nossa equipa de Pilotos ";
-    append(divcol, h2);
-    append(divrow, divcol);
-    append(divcont, divrow);
-
-    data.forEach(function (drivers) {
-        var divcollg4 = document.createElement("div"),
-            a = document.createElement("a"),
-            img = document.createElement("img"),
-            h3 = document.createElement("h3"),
-            small = document.createElement("small"),
-            p = document.createElement("p");
-
-        divcollg4.className = "col-lg-4 col-sm-6 text-center mb-4";
-
-        a.addEventListener("click", function () {
-            onClickOneDri(drivers.id);
+function onClickGoToCat() {
+    // Apenas um estado apenas uma div
+    document.querySelector("#root").style.display = "block";
+    document.querySelector("#onedriver").style.display = "none";
+    document.querySelector("#drivers").style.display = "none";
+    // Informação disponibilizada pela API acerca das categorias disponiveis
+    const url = 'http://ipt-ti2-racinglegends-api.eu-gb.mybluemix.net/api/v1/categories';
+    fetch(url)
+        .then((resp) => resp.json())
+        .then(function (data) {
+            categories(data);
+        })
+        .catch(function (error) {
+            console.log(error);
         });
-
-        img.className = "rounded-circle img-fluid d-block mx-auto";
-        img.src = strImageDri(drivers.id);
-        h3.innerText = drivers.name + " ";
-        small.innerText = drivers.nickname;
-        p.innerText = drivers.nationality;
-        append(a, img);
-        append(divcollg4, a)
-        append(h3, small);
-        append(divcollg4, h3);
-        append(divcollg4, p);
-        append(divrow, divcollg4);
-    });
-}
-
-function oneDriver(onedriver, data) {
-    var divcont = document.createElement("div"),
-        divrow = document.createElement("div"),
-        divcollg8 = document.createElement("div"),
-        h1 = document.createElement("h1"),
-        pbirthdate = document.createElement("p"),
-        ptext = document.createElement("p"),
-        hr = document.createElement("hr"),
-        img = document.createElement("img"),
-        pintroduction = document.createElement("p");
-
-    divcont.className = "container";
-    divrow.className = "row";
-    divcollg8.className = "col-lg-8";
-    h1.className = "mt-4";
-
-    // Necessária uma captura mais eficaz de javascript
-    // PAra aquilo que recebemos em JSON
-    h1.innerText = data.career[0].title;
-    pbirthdate.innerText = data.birth_date;
-    ptext.innerText = data.career[0].text;
-    img.src = strImageDri(data.id);
-    pintroduction.innerText = data.introduction;
-
-    append(onedriver, divcont);
-    append(divcont, divrow);
-    append(divrow, divcollg8);
-    append(divcollg8, h1);
-    append(divcollg8, img);
-    append(divcollg8, pbirthdate);
-    append(divcollg8, ptext);
-    append(divcollg8, hr);
-    append(divcollg8, pintroduction);
 }
 
 function onClickCat(id) {
+    // Apenas um estado apenas uma div
     document.querySelector("#root").style.display = "none";
-    var drivers = document.querySelector("#drivers");
+    document.querySelector("#onedriver").style.display = "none";
+    document.querySelector("#drivers").style.display = "block";
+    // Informação disponibilizada pela API acerca das categorias disponiveis
     var url = 'http://ipt-ti2-racinglegends-api.eu-gb.mybluemix.net/api/v1/categories/' + id + '/drivers';
+    // Memorisa o valor do ID da Categoria
+    sessionStorage.cat = id;
     fetch(url)
         .then(driverslist => driverslist.json())
         .then(function (data) {
-            driversList(drivers, data);
+            driversList(data);
         })
         .catch(function (error) {
             console.log(error);
@@ -172,15 +271,17 @@ function onClickCat(id) {
 
 function onClickOneDri(id) {
     // Todos o conductores gerais deixam de poder ser vistos
+    document.querySelector("#root").style.display = "none";
     document.querySelector("#drivers").style.display = "none";
-    // Seleciona-se a div #onedriver para apresentar os dados desse mesmo conductor
-    var onedriver = document.querySelector("#onedriver");
+    document.querySelector("#onedriver").style.display = "block";
     // Informação disponibilizada pela API de apenas um conductor
     var url = 'http://ipt-ti2-racinglegends-api.eu-gb.mybluemix.net/api/v1/drivers/' + id;
+    // Memorisa a infomacao do corredor ID
+    sessionStorage.driv = id;
     fetch(url)
         .then(driverslist => driverslist.json())
         .then(function (data) {
-            oneDriver(onedriver, data);
+            oneDriver(data);
         })
         .catch(function (error) {
             console.log(error);
